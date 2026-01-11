@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Door | Advanced</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="app.js"></script>
+</head>
+<body>
+
+<div class="bg-animation"></div>
+
+<div class="app-container">
+
+    <!-- LOGIN VIEW -->
+    <div id="view-login" class="glass-card auth-box">
+        <h1 class="brand-title">🌅 Virtual Door</h1>
+        <p class="subtitle">Faculty Appointment System</p>
+        <div class="input-group">
+            <input type="email" id="login-email" placeholder="Email Address">
+        </div>
+        <div class="input-group">
+            <input type="password" id="login-pass" placeholder="Password">
+        </div>
+        <button id="btn-login" type="button" class="btn-primary">Login to Dashboard</button>
+        <div class="footer-links"><span id="link-create-acct">Create New Account</span></div>
+    </div>
+
+    <!-- SIGNUP VIEW -->
+    <div id="view-signup" class="glass-card auth-box hidden">
+        <h1 class="brand-title">✨ Join Us</h1>
+        <p class="subtitle">Create your profile</p>
+        <input type="text" id="signup-name" placeholder="Full Name">
+        <input type="email" id="signup-email" placeholder="Email Address">
+        <input type="password" id="signup-pass" placeholder="Password">
+        <label class="role-label">I am a:</label>
+        <select id="signup-role">
+            <option value="student">Student 👨‍🎓</option>
+            <option value="faculty">Faculty Member 👩‍🏫</option>
+        </select>
+        <input type="text" id="signup-program" placeholder="Program (e.g. B.Tech CSE)">
+        <input type="text" id="signup-dept" class="hidden" placeholder="Department (e.g. Computer Science)">
+        <button id="btn-signup" type="button" class="btn-primary">Sign Up</button>
+        <div class="footer-links"><span id="link-back-login">Back to Login</span></div>
+    </div>
+
+    <!-- STUDENT VIEW -->
+    <div id="view-student" class="glass-card dashboard-wide hidden">
+        <header class="dash-header">
+            <div>
+                <h2>👨‍🎓 Student Panel</h2>
+                <p id="student-program-display" style="color: #2563eb; font-weight: bold; margin: 0;"></p>
+            </div>
+            <button type="button" class="btn-logout">Logout</button>
+        </header>
+
+        <div class="content-grid">
+            <div class="panel">
+                <h3>📅 Book Appointment</h3>
+                <label>Select Professor:</label>
+                <select id="student-faculty-list"></select>
+                <div id="student-fac-schedule-display" class="schedule-display hidden"></div>
+                <label>Reason:</label>
+                <input type="text" id="booking-msg" placeholder="e.g. Project Review">
+                <button id="btn-book" type="button" class="btn-action">Send Request 🚀</button>
+            </div>
+
+            <div class="panel">
+                <h3>My Request History</h3>
+                <ul id="student-history-list" class="styled-list">
+                    <li>No active requests.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- FACULTY VIEW -->
+    <div id="view-faculty" class="glass-card dashboard-split hidden">
+        <aside class="sidebar">
+            <h2 class="sidebar-title">👩‍🏫 Profile</h2>
+            <div class="profile-inputs">
+                <label>Full Name</label> <input id="fac-name" disabled>
+                <label>Email</label> <input id="fac-email" disabled>
+                <label>Department</label> <input id="fac-dept" disabled>
+                <label>Phone</label> <input id="fac-phone" placeholder="+91..." disabled>
+                <label>Building</label> <input id="fac-building" placeholder="Block A" disabled>
+                <label>Room No</label> <input id="fac-room" placeholder="304" disabled>
+                <div class="btn-row">
+                    <button id="btn-fac-edit" type="button" onclick="toggleEdit(true)" class="btn-edit">Edit</button>
+                    <button id="btn-fac-save" type="button" onclick="saveProfile()" class="btn-save hidden">Save</button>
+                </div>
+            </div>
+            <button type="button" class="btn-logout mt-auto">Logout</button>
+        </aside>
+
+        <main class="main-area">
+            <div class="panel">
+                <div class="panel-header">🗓 My Weekly Schedule</div>
+                <p class="hint">Select your Start Time and End Time</p>
+                <div id="schedule-builder" class="schedule-builder"></div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">🔔 Appointment Requests</div>
+                <div id="faculty-appt-list" class="requests-grid"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ADMIN VIEW -->
+    <div id="view-admin" class="glass-card dashboard-wide hidden">
+        <header class="dash-header">
+            <h2>🛡 Admin Panel</h2>
+            <div style="display:flex; gap:10px;">
+                <button type="button" onclick="secureReset()" style="background:#ef4444; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">⚠ Reset DB</button>
+                <button type="button" class="btn-logout">Logout</button>
+            </div>
+        </header>
+        <div class="panel">
+            <h3>Pending Approvals</h3>
+            <ul id="admin-faculty-list" class="styled-list"></ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
